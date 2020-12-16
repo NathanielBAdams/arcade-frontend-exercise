@@ -1,12 +1,13 @@
 import React from 'react';
-import { Box, Text } from '@chakra-ui/react';
+import { Box, Text, Avatar } from '@chakra-ui/react';
 import { Person } from '../../types';
 
-export type Props = Pick<Person, 'name' | 'teamName'>;
+export type Props = Pick<Person, 'name' | 'teamName' | "imageUrl" >;
 
-export function PeopleListItem({
+export const PeopleListItem = React.memo(function PeopleListItem({
   name,
   teamName,
+  imageUrl
 }: Props) {
   return (
     <Box
@@ -18,6 +19,9 @@ export function PeopleListItem({
         <Text fontSize="sm">{name}</Text>
         <Text fontSize="xs">{teamName}</Text>
       </Box>
+      <Box flex="100" />
+      <Avatar size="sm" name={name} src={imageUrl} alt={`${name} image`}/>
     </Box>
   );
-}
+});
+
